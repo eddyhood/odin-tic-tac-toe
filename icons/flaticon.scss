@@ -1,0 +1,41 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?0b7a318a4f57dee9e1b9f9ade5f8d605") format("truetype"),
+url("./flaticon.woff?0b7a318a4f57dee9e1b9f9ade5f8d605") format("woff"),
+url("./flaticon.woff2?0b7a318a4f57dee9e1b9f9ade5f8d605") format("woff2"),
+url("./flaticon.eot?0b7a318a4f57dee9e1b9f9ade5f8d605#iefix") format("embedded-opentype"),
+url("./flaticon.svg?0b7a318a4f57dee9e1b9f9ade5f8d605#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "tic-tac-toe": "\f101",
+    "chatbot": "\f102",
+    "close": "\f103",
+    "o": "\f104",
+);
+
+.flaticon-tic-tac-toe:before {
+    content: map-get($flaticon-map, "tic-tac-toe");
+}
+.flaticon-chatbot:before {
+    content: map-get($flaticon-map, "chatbot");
+}
+.flaticon-close:before {
+    content: map-get($flaticon-map, "close");
+}
+.flaticon-o:before {
+    content: map-get($flaticon-map, "o");
+}
