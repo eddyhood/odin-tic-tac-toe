@@ -25,12 +25,12 @@ h1 {
 }
 
 h3 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 10px;
 }
 
 /* Game Controller */
-#display {
+#name-boxes {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -66,6 +66,14 @@ h3 {
 
 }
 
+#message {
+    display: none;
+    text-align: center;
+    margin: 0px 10px;
+    background-color: rgb(244, 98, 98);
+    padding: 5px;
+    
+}
 
 button {
     border: 1px solid var(--dark);
@@ -114,14 +122,40 @@ button:hover {
     font-size: 3rem;
 }
 
-#game-mode, #game-names {
+#game-mode {
     display: flex;
     justify-content: space-between;
     margin: 10px 0px;
 }
 
+#game-names {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#restart-game {
+    display: none;
+}
+
 #pvp, #pvc {
     margin: 10px;
+    color: var(--green); 
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: var(--green);
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
 }
 
 footer {
