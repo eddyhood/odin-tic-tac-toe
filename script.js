@@ -90,6 +90,8 @@ function createPlayer(name) {
     const sq7 = document.getElementById('sq-7');
     const sq8 = document.getElementById('sq-8');
     const sq9 = document.getElementById('sq-9');
+    const p1Name = document.getElementById('player-one-name');
+    const p2Name = document.getElementById('player-two-name');
 
     //Event listeners
     sq1.addEventListener('click', e => getMove(e));
@@ -176,82 +178,102 @@ function createPlayer(name) {
                 console.log(c3);
                 break
         }
-        declareWinner();
+        calculateWinner();
     }
 
-    function declareWinner() {
+    function calculateWinner() {
+        let winner = null;
+
         //Top row
         if (a1 == 1 && b1 == 1 && c1 == 1) {
-            console.log('player 1 wins')
+            winner = 'p1';
         }
     
         if (a1 == 2 && b1 == 2 && c1 == 2) {
-            console.log('player 2 wins')
+            winner = 'p2';
         }
 
         //Middle row
         if (a2 == 1 && b2 == 1 && c2 == 1) {
-            console.log('player 1 wins')
+            winner = 'p1';
         }
     
         if (a2 == 2 && b2 == 2 && c2 == 2) {
-            console.log('player 2 wins')
+            winner = 'p2';
         }
 
         //Bottom row
         if (a3 == 1 && b3 == 1 && c3 == 1) {
-            console.log('player 1 wins')
+            winner = 'p1';
         }
     
         if (a3 == 2 && b3 == 2 && c3 == 2) {
-            console.log('player 2 wins')
+            winner = 'p2';
         }
 
         //First Column
         if (a1 == 1 && a2 == 1 && a3 == 1) {
-            console.log('player 1 wins')
+            winner = 'p1';
         }
     
         if (a1 == 2 && a2 == 2 && a3 == 2) {
-            console.log('player 2 wins')
+            winner = 'p2';
         }
 
          //Second Column
          if (b1 == 1 && b2 == 1 && b3 == 1) {
-            console.log('player 1 wins')
+            winner = 'p1';
         }
     
         if (b1 == 2 && b2 == 2 && b3 == 2) {
-            console.log('player 2 wins')
+            winner = 'p2';
         }
 
         //Third Column
         if (c1 == 1 && c2 == 1 && c3 == 1) {
-            console.log('player 1 wins')
+            winner = 'p1';
         }
     
         if (c1 == 2 && c2 == 2 && c3 == 2) {
-            console.log('player 2 wins')
+            winner = 'p2';
         }
 
         //Top Left down to Bottom Right
         if (a1 == 1 && b2 == 1 && c3 == 1) {
-            console.log('player 1 wins')
+            winner = 'p1';
         }
     
         if (a1 == 2 && b2 == 2 && c3 == 2) {
-            console.log('player 2 wins')
+            winner = 'p2';
         }
 
         //Top Right down to Bottom Left
         if (c1 == 1 && b2 == 1 && a3 == 1) {
-            console.log('player 1 wins')
+            winner = 'p1';
         }
     
         if (c1 == 2 && b2 == 2 && a3 == 2) {
-            console.log('player 2 wins')
+            winner = 'p2';
         }
-        return;
+
+        if(winner) {
+            declareWinner(winner);
+        }
+    }
+
+    function declareWinner(winner) {
+        const playerOne = document.getElementById('player-one-name').innerText;
+        const playerTwo = document.getElementById('player-two-name').innerText;
+        const gameBoard = document.getElementById('game-board');
+        const announcement = document.getElementById('announcement');
+
+        let congratulations = (winner == 'p1') ? playerOne + 'Wins!' : playerTwo + 'Wins!'
+
+        // gameBoard.style.display = 'none';
+        announcement.style.display = 'block';
+        announcement.innerHTML = congratulations;
+
+    
     }
 })();
 
