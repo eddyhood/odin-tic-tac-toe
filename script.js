@@ -38,11 +38,15 @@
         //Establish the game object to call    
         }
         if(pvpMode.checked) {
-            console.log('pvp game');
+            let p1 = createPlayer(playerOne);
+            let p2 = createPlayer(playerTwo);
         } else if(pvcMode.checked) {
-            console.log('pvc game')
+            let p1 = createPlayer(playerOne);
+            let p2 = createPlayer('computer');
         } else {
-            console.log('Choose a game mode')
+            message.style.display = 'block';
+            message.innerText = 'Choose a Game Mode';
+            return;
         }
         displayNames(playerOne, playerTwo); 
     };
@@ -69,6 +73,9 @@
 })();
 
 //factories
-function createPlayer() {
-    return player;
+function createPlayer(name) {
+    let gamesWon = 0;
+    let turn;
+
+    return {name, gamesWon, turn}
 }
