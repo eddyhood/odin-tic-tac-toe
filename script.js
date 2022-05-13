@@ -103,11 +103,22 @@ function createPlayer(name) {
     sq9.addEventListener('click', e => getMove(e));
 
     let move = 0;
+    //Stores values in each grid cell. Reads top left to right like a book.
+    let a1 = null;
+    let b1 = null;
+    let c1 = null;
+    let a2 = null;
+    let b2 = null;
+    let c2 = null;
+    let a3 = null;
+    let b3 = null;
+    let c3 = null;
 
 
     function getMove(e) {
         move += 1;
-        (move % 2 == 0) ? getWeapon(e,'P2') : getWeapon(e, 'P1');
+        let choice = (move % 2 == 0) ? getWeapon(e,'P2') : getWeapon(e, 'P1');
+
     };
 
     function getWeapon(e, player) {
@@ -115,10 +126,133 @@ function createPlayer(name) {
 
         if (player == 'P1') {
             weapon.classList.add('flaticon-close');
+            keepScore(e, 1);
         } else {
             weapon.classList.add('flaticon-o');
+            keepScore(e, 2);
         }
         e.target.appendChild(weapon);
-        return;
+        console.log(weapon)
+        return weapon;
     }    
+
+    function keepScore(e, player) {
+
+        switch (e.target.id) {
+            case "sq-1":
+                a1 = player;
+                console.log(a1);
+                break
+            case "sq-2":
+                b1 = player;
+                console.log(b1);
+                break
+            case "sq-3":
+                c1 = player;
+                console.log(c1);
+                break
+            case "sq-4":
+                a2 = player;
+                console.log(a2);
+                break
+            case "sq-5":
+                b2 = player;
+                console.log(b2);
+                break
+            case "sq-6":
+                c2 = player;
+                console.log(c2);
+                break
+            case "sq-7":
+                a3 = player;
+                console.log(a3);
+                break
+            case "sq-8":
+                b3 = player;
+                console.log(b3);
+                break
+            case "sq-9":
+                c3 = player;
+                console.log(c3);
+                break
+        }
+        declareWinner();
+    }
+
+    function declareWinner() {
+        //Top row
+        if (a1 == 1 && b1 == 1 && c1 == 1) {
+            console.log('player 1 wins')
+        }
+    
+        if (a1 == 2 && b1 == 2 && c1 == 2) {
+            console.log('player 2 wins')
+        }
+
+        //Middle row
+        if (a2 == 1 && b2 == 1 && c2 == 1) {
+            console.log('player 1 wins')
+        }
+    
+        if (a2 == 2 && b2 == 2 && c2 == 2) {
+            console.log('player 2 wins')
+        }
+
+        //Bottom row
+        if (a3 == 1 && b3 == 1 && c3 == 1) {
+            console.log('player 1 wins')
+        }
+    
+        if (a3 == 2 && b3 == 2 && c3 == 2) {
+            console.log('player 2 wins')
+        }
+
+        //First Column
+        if (a1 == 1 && a2 == 1 && a3 == 1) {
+            console.log('player 1 wins')
+        }
+    
+        if (a1 == 2 && a2 == 2 && a3 == 2) {
+            console.log('player 2 wins')
+        }
+
+         //Second Column
+         if (b1 == 1 && b2 == 1 && b3 == 1) {
+            console.log('player 1 wins')
+        }
+    
+        if (b1 == 2 && b2 == 2 && b3 == 2) {
+            console.log('player 2 wins')
+        }
+
+        //Third Column
+        if (c1 == 1 && c2 == 1 && c3 == 1) {
+            console.log('player 1 wins')
+        }
+    
+        if (c1 == 2 && c2 == 2 && c3 == 2) {
+            console.log('player 2 wins')
+        }
+
+        //Top Left down to Bottom Right
+        if (a1 == 1 && b2 == 1 && c3 == 1) {
+            console.log('player 1 wins')
+        }
+    
+        if (a1 == 2 && b2 == 2 && c3 == 2) {
+            console.log('player 2 wins')
+        }
+
+        //Top Right down to Bottom Left
+        if (c1 == 1 && b2 == 1 && a3 == 1) {
+            console.log('player 1 wins')
+        }
+    
+        if (c1 == 2 && b2 == 2 && a3 == 2) {
+            console.log('player 2 wins')
+        }
+        return;
+    }
 })();
+
+
