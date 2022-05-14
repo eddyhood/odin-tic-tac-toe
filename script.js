@@ -89,8 +89,14 @@ function createPlayer(name) {
     const sq7 = document.getElementById('sq-7');
     const sq8 = document.getElementById('sq-8');
     const sq9 = document.getElementById('sq-9');
-    const p1Name = document.getElementById('player-one-name');
-    const p2Name = document.getElementById('player-two-name');
+    const playerOne = document.getElementById('player-one-name').innerText;
+    const playerTwo = document.getElementById('player-two-name').innerText;
+    const gameBoard = document.getElementById('game-board');
+    const announcement = document.getElementById('announcement');
+    const restartGameBtn = document.getElementById('restart-game');
+    const battleAgainBtn = document.getElementById('battle-again');
+    const p1Points = document.getElementById('p1-points');
+    const p2Points = document.getElementById('p2-points');
 
     //Event listeners
     sq1.addEventListener('click', e => getMove(e));
@@ -102,6 +108,8 @@ function createPlayer(name) {
     sq7.addEventListener('click', e => getMove(e));
     sq8.addEventListener('click', e => getMove(e));
     sq9.addEventListener('click', e => getMove(e));
+    restartGameBtn.addEventListener('click', resetScores);
+    battleAgainBtn.addEventListener('click', battleAgain);
 
     let move = 0;
     //Stores values in each grid cell. Reads top left to right like a book.
@@ -115,11 +123,14 @@ function createPlayer(name) {
     let b3 = null;
     let c3 = null;
 
+    //score
+    let playerOnePoints = 0;
+    let playerTwoPoints = 0;
+
 
     function getMove(e) {
         move += 1;
         let choice = (move % 2 == 0) ? getWeapon(e,'P2') : getWeapon(e, 'P1');
-
     };
 
     function getWeapon(e, player) {
@@ -133,7 +144,6 @@ function createPlayer(name) {
             keepScore(e, 2);
         }
         e.target.appendChild(weapon);
-        console.log(weapon)
         return weapon;
     }    
 
@@ -142,39 +152,30 @@ function createPlayer(name) {
         switch (e.target.id) {
             case "sq-1":
                 a1 = player;
-                console.log(a1);
                 break
             case "sq-2":
                 b1 = player;
-                console.log(b1);
                 break
             case "sq-3":
                 c1 = player;
-                console.log(c1);
                 break
             case "sq-4":
                 a2 = player;
-                console.log(a2);
                 break
             case "sq-5":
                 b2 = player;
-                console.log(b2);
                 break
             case "sq-6":
                 c2 = player;
-                console.log(c2);
                 break
             case "sq-7":
                 a3 = player;
-                console.log(a3);
                 break
             case "sq-8":
                 b3 = player;
-                console.log(b3);
                 break
             case "sq-9":
                 c3 = player;
-                console.log(c3);
                 break
         }
         calculateWinner();
@@ -186,88 +187,100 @@ function createPlayer(name) {
         //Top row
         if (a1 == 1 && b1 == 1 && c1 == 1) {
             winner = 'p1';
+            playerOnePoints += 1;
         }
     
         if (a1 == 2 && b1 == 2 && c1 == 2) {
             winner = 'p2';
+            playerTwoPoints += 1;
         }
 
         //Middle row
         if (a2 == 1 && b2 == 1 && c2 == 1) {
             winner = 'p1';
+            playerOnePoints += 1;
         }
     
         if (a2 == 2 && b2 == 2 && c2 == 2) {
             winner = 'p2';
+            playerTwoPoints += 1;
         }
 
         //Bottom row
         if (a3 == 1 && b3 == 1 && c3 == 1) {
             winner = 'p1';
+            playerOnePoints += 1;
         }
     
         if (a3 == 2 && b3 == 2 && c3 == 2) {
             winner = 'p2';
+            playerTwoPoints += 1;
         }
 
         //First Column
         if (a1 == 1 && a2 == 1 && a3 == 1) {
             winner = 'p1';
+            playerOnePoints += 1;
         }
     
         if (a1 == 2 && a2 == 2 && a3 == 2) {
             winner = 'p2';
+            playerTwoPoints += 1;
         }
 
          //Second Column
          if (b1 == 1 && b2 == 1 && b3 == 1) {
             winner = 'p1';
+            playerOnePoints += 1;
         }
     
         if (b1 == 2 && b2 == 2 && b3 == 2) {
             winner = 'p2';
+            playerTwoPoints += 1;
         }
 
         //Third Column
         if (c1 == 1 && c2 == 1 && c3 == 1) {
             winner = 'p1';
+            playerOnePoints += 1;
         }
     
         if (c1 == 2 && c2 == 2 && c3 == 2) {
             winner = 'p2';
+            playerTwoPoints += 1;
         }
 
         //Top Left down to Bottom Right
         if (a1 == 1 && b2 == 1 && c3 == 1) {
             winner = 'p1';
+            playerOnePoints += 1;
         }
     
         if (a1 == 2 && b2 == 2 && c3 == 2) {
             winner = 'p2';
+            playerTwoPoints += 1;
         }
 
         //Top Right down to Bottom Left
         if (c1 == 1 && b2 == 1 && a3 == 1) {
             winner = 'p1';
+            playerOnePoints += 1;
         }
     
         if (c1 == 2 && b2 == 2 && a3 == 2) {
             winner = 'p2';
+            playerTwoPoints += 1;
         }
 
         if(winner) {
             declareWinner(winner);
         }
+
+        p1Points.innerText = 'Score: ' + playerOnePoints;
+        p2Points.innerText = 'Score: ' + playerTwoPoints;
     }
 
     function declareWinner(winner) {
-        const playerOne = document.getElementById('player-one-name').innerText;
-        const playerTwo = document.getElementById('player-two-name').innerText;
-        const gameBoard = document.getElementById('game-board');
-        const announcement = document.getElementById('announcement');
-        const restartGameBtn = document.getElementById('restart-game');
-        const battleAgainBtn = document.getElementById('battle-again');
-
         let congratulations = (winner == 'p1') ? playerOne + 'Wins!' : playerTwo + 'Wins!'
 
         gameBoard.style.filter = 'blur(2px)';
@@ -275,9 +288,42 @@ function createPlayer(name) {
         battleAgainBtn.style.display = 'block';
         announcement.style.display = 'block';
         announcement.innerHTML = congratulations;
-
-    
     }
+
+    function resetScores() {
+        playerOnePoints = 0;
+        playerTwoPoints = 0;
+        p1Points.innerText = 'Score: ' + playerOnePoints;
+        p2Points.innerText = 'Score: ' + playerTwoPoints;
+        battleAgain();
+    }
+
+    function battleAgain() {
+        gameBoard.style.filter = 'blur(0px)';
+        restartGameBtn.style.display = 'none';
+        battleAgainBtn.style.display = 'none';
+        announcement.style.display = 'none';
+
+        //reset board values
+        move = 0;
+        a1 = null;
+        b1 = null;
+        c1 = null;
+        a2 = null;
+        b2 = null;
+        c2 = null;
+        a3 = null;
+        b3 = null;
+        c3 = null;
+
+        //Empty square icons
+        let squares = gameBoard.children;
+        for(i = 0; i < squares.length; i++) {
+            squares[i].innerText = '';
+        }
+        
+    }
+
 })();
 
 
