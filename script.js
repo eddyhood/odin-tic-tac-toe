@@ -59,7 +59,6 @@
         }
         playerOneNameDisplay.innerText = a;
         playerTwoNameDisplay.innerText = b;
-        restartGameBtn.style.display = 'block';
 
 
     }
@@ -266,10 +265,14 @@ function createPlayer(name) {
         const playerTwo = document.getElementById('player-two-name').innerText;
         const gameBoard = document.getElementById('game-board');
         const announcement = document.getElementById('announcement');
+        const restartGameBtn = document.getElementById('restart-game');
+        const battleAgainBtn = document.getElementById('battle-again');
 
         let congratulations = (winner == 'p1') ? playerOne + 'Wins!' : playerTwo + 'Wins!'
 
-        // gameBoard.style.display = 'none';
+        gameBoard.style.filter = 'blur(2px)';
+        restartGameBtn.style.display = 'block';
+        battleAgainBtn.style.display = 'block';
         announcement.style.display = 'block';
         announcement.innerHTML = congratulations;
 

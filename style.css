@@ -1,5 +1,6 @@
 :root {
     --green: #6dd47e;
+    --red: rgb(244, 98, 98);
     --yellow: #ffd554;
     --dark: rgb(47, 47, 88);
     font-size: 18px;
@@ -70,8 +71,15 @@ h3 {
     display: none;
     text-align: center;
     margin: 0px 10px;
-    background-color: rgb(244, 98, 98);
-    padding: 5px;
+    background-color: var(--red);
+    padding: 5px;   
+}
+
+#announcement{
+    font-size: 24px;
+    color: var(--dark);
+    display: none;
+    margin-top: 10px;
     
 }
 
@@ -80,12 +88,12 @@ button {
     border-radius: 0px;
     color: var(--dark);
     background-color: var(--green);
-    width: 100%;
+    width: 50%;
     padding: 10px;
 }
 
 button:hover {
-    background-color: #76e288;
+    filter: brightness(115%);
 }
 
 .weapon>i {
@@ -135,8 +143,20 @@ button:hover {
     margin-bottom: 10px;
 }
 
-#restart-game {
+#restart-game, #battle-again {
     display: none;
+
+}
+
+#restart-game {
+    background-color: var(--red);
+}
+
+#next-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
 #pvp, #pvc {
