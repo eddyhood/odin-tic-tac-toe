@@ -89,14 +89,14 @@ function createPlayer(name) {
     const sq7 = document.getElementById('sq-7');
     const sq8 = document.getElementById('sq-8');
     const sq9 = document.getElementById('sq-9');
-    const playerOne = document.getElementById('player-one-name').innerText;
-    const playerTwo = document.getElementById('player-two-name').innerText;
     const gameBoard = document.getElementById('game-board');
     const announcement = document.getElementById('announcement');
     const restartGameBtn = document.getElementById('restart-game');
     const battleAgainBtn = document.getElementById('battle-again');
     const p1Points = document.getElementById('p1-points');
     const p2Points = document.getElementById('p2-points');
+    const pvpMode = document.getElementById('pvp');
+    const pvcMode = document.getElementById('pvc');
 
     //Event listeners
     sq1.addEventListener('click', e => getMove(e));
@@ -127,10 +127,15 @@ function createPlayer(name) {
     let playerOnePoints = 0;
     let playerTwoPoints = 0;
 
-
     function getMove(e) {
-        move += 1;
-        let choice = (move % 2 == 0) ? getWeapon(e,'P2') : getWeapon(e, 'P1');
+        //check to see if players created before letting game start
+        let squareID = e.srcElement.id;
+        let checkID = document.getElementById(squareID);
+        const playerOne = document.getElementById('player-one-name').innerText;
+        if (playerOne != 'Player 1' && checkID.childNodes.length == 0) {
+            move += 1;
+            (move % 2 == 0) ? getWeapon(e,'P2') : getWeapon(e, 'P1');
+        } 
     };
 
     function getWeapon(e, player) {
@@ -281,6 +286,9 @@ function createPlayer(name) {
     }
 
     function declareWinner(winner) {
+        const playerOne = document.getElementById('player-one-name').innerText;
+        const playerTwo = document.getElementById('player-two-name').innerText;
+
         let congratulations = (winner == 'p1') ? playerOne + 'Wins!' : playerTwo + 'Wins!'
 
         gameBoard.style.filter = 'blur(2px)';
