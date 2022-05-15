@@ -289,7 +289,7 @@ function createPlayer(name) {
         const playerOne = document.getElementById('player-one-name').innerText;
         const playerTwo = document.getElementById('player-two-name').innerText;
 
-        let congratulations = (winner == 'p1') ? playerOne + 'Wins!' : playerTwo + 'Wins!'
+        let congratulations = (winner == 'p1') ? playerOne + ' Wins!' : playerTwo + ' Wins!'
 
         gameBoard.style.filter = 'blur(2px)';
         restartGameBtn.style.display = 'block';
