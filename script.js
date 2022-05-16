@@ -163,8 +163,27 @@ function createPlayer(name) {
     }    
 
     function getComputerMove() {
-        console.log('Now computer moves!')
-    }
+        let squares = [sq1, sq2, sq3, sq4, sq5, sq6, sq7, sq8, sq9];
+        let checked = [];
+    
+        //Get available squares and added to checked array
+        for(let square of squares) {
+            if(square.innerHTML == '') {
+                checked.push(square);
+            }
+        }
+    
+        //Create a legal computer move
+        let computerMove = Math.floor(Math.random() * checked.length);
+        let attackSquare = document.getElementById(checked[computerMove].id)
+        console.log(attackSquare)
+    
+        //build and place weapon
+        const weapon = document.createElement('i');
+        weapon.classList.add('flaticon-o');
+        attackSquare.appendChild(weapon);
+    } 
+    
 
     function keepScore(e, player) {
 
