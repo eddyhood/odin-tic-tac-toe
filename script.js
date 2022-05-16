@@ -130,7 +130,7 @@ function createPlayer(name) {
     let playerTwoPoints = 0;
 
     function getMove(e) {
-        //check to see if players created before letting game start
+        //check to see if players created before letting game start 
         let squareID = e.srcElement.id;
         let checkID = document.getElementById(squareID);
         const playerOne = document.getElementById('player-one-name').innerText;
@@ -139,8 +139,11 @@ function createPlayer(name) {
                 move += 1;
                 (move % 2 == 0) ? getWeapon(e,'P2') : getWeapon(e, 'P1');
             } else{
+                //Log players move and get computer's move right after;
                 move += 1;
-                (move % 2 == 0) ? getComputerMove() : getWeapon(e, 'P1');
+                getWeapon(e, 'P1');
+                getComputerMove();
+
             }
         } 
     };
