@@ -1,4 +1,6 @@
 
+let mode = null;
+
 //Modules
 
 (function gameControls() {
@@ -38,9 +40,11 @@
         //Establish the game object to call    
         }
         if(pvpMode.checked) {
+            mode = 'pvp';
             let p1 = createPlayer(playerOne);
             let p2 = createPlayer(playerTwo);
         } else if(pvcMode.checked) {
+            mode = 'pvc';
             let p1 = createPlayer(playerOne);
             let p2 = createPlayer('computer');
         } else {
@@ -95,8 +99,6 @@ function createPlayer(name) {
     const battleAgainBtn = document.getElementById('battle-again');
     const p1Points = document.getElementById('p1-points');
     const p2Points = document.getElementById('p2-points');
-    const pvpMode = document.getElementById('pvp');
-    const pvcMode = document.getElementById('pvc');
 
     //Event listeners
     sq1.addEventListener('click', e => getMove(e));
@@ -133,8 +135,13 @@ function createPlayer(name) {
         let checkID = document.getElementById(squareID);
         const playerOne = document.getElementById('player-one-name').innerText;
         if (playerOne != 'Player 1' && checkID.childNodes.length == 0) {
-            move += 1;
-            (move % 2 == 0) ? getWeapon(e,'P2') : getWeapon(e, 'P1');
+            if(mode == 'pvp'){
+                move += 1;
+                (move % 2 == 0) ? getWeapon(e,'P2') : getWeapon(e, 'P1');
+            } else{
+                move += 1;
+                (move % 2 == 0) ? getComputerMove() : getWeapon(e, 'P1');
+            }
         } 
     };
 
@@ -151,6 +158,10 @@ function createPlayer(name) {
         e.target.appendChild(weapon);
         return weapon;
     }    
+
+    function getComputerMove() {
+        console.log('Now computer moves!')
+    }
 
     function keepScore(e, player) {
 
