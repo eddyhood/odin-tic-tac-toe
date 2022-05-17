@@ -325,7 +325,6 @@ function createPlayer(name) {
         let squares = [a1, a2, a3, b1, b2, b3, c1, c2, c3];
         let check = squares.includes(null);
         if(check != true && winner != true) {
-            console.log('check for draw' + check)
             gameBoard.style.filter = 'blur(2px)';
             restartGameBtn.style.display = 'block';
             battleAgainBtn.style.display = 'block';
