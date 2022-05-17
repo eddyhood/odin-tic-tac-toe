@@ -84,15 +84,15 @@ function createPlayer(name) {
 }
 
 (function playGame() {
-    const sq1 = document.getElementById('sq-1');
-    const sq2 = document.getElementById('sq-2');
-    const sq3 = document.getElementById('sq-3');
-    const sq4 = document.getElementById('sq-4');
-    const sq5 = document.getElementById('sq-5');
-    const sq6 = document.getElementById('sq-6');
-    const sq7 = document.getElementById('sq-7');
-    const sq8 = document.getElementById('sq-8');
-    const sq9 = document.getElementById('sq-9');
+    const sq1 = document.getElementById('sq1');
+    const sq2 = document.getElementById('sq2');
+    const sq3 = document.getElementById('sq3');
+    const sq4 = document.getElementById('sq4');
+    const sq5 = document.getElementById('sq5');
+    const sq6 = document.getElementById('sq6');
+    const sq7 = document.getElementById('sq7');
+    const sq8 = document.getElementById('sq8');
+    const sq9 = document.getElementById('sq9');
     const gameBoard = document.getElementById('game-board');
     const announcement = document.getElementById('announcement');
     const restartGameBtn = document.getElementById('restart-game');
@@ -153,10 +153,10 @@ function createPlayer(name) {
 
         if (player == 'P1') {
             weapon.classList.add('flaticon-close');
-            keepScore(e, 1);
+            keepScore(e.target.id, 1);
         } else {
             weapon.classList.add('flaticon-o');
-            keepScore(e, 2);
+            keepScore(e.target.id, 2);
         }
         e.target.appendChild(weapon);
         return weapon;
@@ -176,43 +176,44 @@ function createPlayer(name) {
         //Create a legal computer move
         let computerMove = Math.floor(Math.random() * checked.length);
         let attackSquare = document.getElementById(checked[computerMove].id)
-        console.log(attackSquare)
+        console.log('attack square is' + String(attackSquare.id))
     
         //build and place weapon
         const weapon = document.createElement('i');
         weapon.classList.add('flaticon-o');
         attackSquare.appendChild(weapon);
+        keepScore(attackSquare.id, 2 )
     } 
     
 
-    function keepScore(e, player) {
+    function keepScore(squareId, player) {
 
-        switch (e.target.id) {
-            case "sq-1":
+        switch (squareId) {
+            case "sq1":
                 a1 = player;
                 break
-            case "sq-2":
+            case "sq2":
                 b1 = player;
                 break
-            case "sq-3":
+            case "sq3":
                 c1 = player;
                 break
-            case "sq-4":
+            case "sq4":
                 a2 = player;
                 break
-            case "sq-5":
+            case "sq5":
                 b2 = player;
                 break
-            case "sq-6":
+            case "sq6":
                 c2 = player;
                 break
-            case "sq-7":
+            case "sq7":
                 a3 = player;
                 break
-            case "sq-8":
+            case "sq8":
                 b3 = player;
                 break
-            case "sq-9":
+            case "sq9":
                 c3 = player;
                 break
         }
